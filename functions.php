@@ -22,21 +22,21 @@ register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
  * Add Lesson post type and Course taxonomy
  */
 
- function create_custom_post_type() {
-   register_post_type( 'figgins_lesson',
-     array(
-       'labels' => array(
-         'name' => __( 'Lessons' ),
-         'singular_name' => __( 'Lesson' )
-       ),
-       'public' => true,
-       'has_archive' => true,
-       'rewrite' => array('slug' => 'lessons'),
-       'menu_position' => 20,
-       'menu_icon' => 'dashicons-book-alt'
-     )
-   );
- }
+function create_custom_post_type() {
+ register_post_type( 'figgins_lesson',
+   array(
+     'labels' => array(
+       'name' => __( 'Lessons' ),
+       'singular_name' => __( 'Lesson' )
+     ),
+     'public' => true,
+     'has_archive' => true,
+     'rewrite' => array('slug' => 'lessons'),
+     'menu_position' => 20,
+     'menu_icon' => 'dashicons-book-alt'
+   )
+ );
+}
 add_action( 'init', 'create_custom_post_type' );
 
 function create_custom_taxonomy() {
@@ -106,3 +106,19 @@ function remove_admin_bar() {
   }
 }
 add_action('after_setup_theme', 'remove_admin_bar');
+
+/*
+ * Create nonce with 5 minute expiration
+ */
+
+function create_app_password($user_id) {
+  $pass = md5(time() . random_int (0, 255));
+  $set_pass = add_user_meta($user_id, 'figgins_application_password', $pass, true);
+  $success = ($set_pass ? true : false);
+  return success;
+}
+
+function get_app_password($user_id) {
+  $pass = get_user_meta($user_id, 'figgins_application_password', true);
+  return $pass;
+}

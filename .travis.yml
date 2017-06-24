@@ -1,0 +1,3 @@
+language: php
+after_success:
+    "curl --ftp-create-dirs -T figgins -u $SFTP_USER:$SFTP_PASSWORD sftp://figgins.sftp.wpengine.com:2222/wp-content/plugins"

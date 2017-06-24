@@ -1,0 +1,15 @@
+{
+    "name": "worldpeaceio/figgins",
+    "description": "\"Self-education is, I firmly believe, the only kind of education there is.\" - Isaac Asimov",
+    "type": "project",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Nate Gay",
+            "email": "nate@worldpeace.io"
+        }
+    ],
+    "require": {
+        "lcobucci/jwt": "^3.2"
+    }
+}
